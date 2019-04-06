@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 /**
  * Abstract class for objects
  */
@@ -18,17 +20,17 @@ public abstract class AObject implements IObject {
   }
 
   @Override
-  public Color getX() {
+  public double getX() {
     return X;
   }
 
   @Override
-  public Color getY() {
+  public double getY() {
     return Y;
   }
 
   @Override
-  public Color getC() {
+  public Color getColor() {
     return C;
   }
 

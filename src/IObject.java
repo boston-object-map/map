@@ -1,4 +1,4 @@
-package PACKAGE_NAME;
+import java.awt.Color;
 
 /**
  * Created by Michael Goodnow on 2019-04-06.
