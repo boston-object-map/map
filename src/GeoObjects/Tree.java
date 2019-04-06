@@ -4,7 +4,7 @@ package GeoObjects;
  * Created by Michael Goodnow on 2019-04-06.
  */
 
-public class Tree extends AObject {
+public class Tree extends AGeoObject {
 
   private int objectID;
   private String type;

@@ -10,7 +10,7 @@ import java.awt.Color;
  * This interface represents each object to be repesented in our map and allows functionality to
  * return necessary information
  */
-public interface IObject {
+public interface IGeoObject {
 
   /**
    * Return the objects X-Coordinate

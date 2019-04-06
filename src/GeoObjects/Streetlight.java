@@ -1,12 +1,10 @@
 package GeoObjects;
 
-import com.sun.deploy.panel.SpecialTreeListener;
-
 /**
  * Created by Michael Goodnow on 2019-04-06.
  */
 
-public class Streetlight extends AObject {
+public class Streetlight extends AGeoObject {
 
   private int objectID;
   private String type;

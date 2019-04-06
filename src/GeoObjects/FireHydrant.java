@@ -4,7 +4,7 @@ package GeoObjects;
  * Created by Michael Goodnow on 2019-04-06.
  */
 
-public class FireHydrant extends AObject {
+public class FireHydrant extends AGeoObject {
 
   private final int objectID;
   private int ObjectID;

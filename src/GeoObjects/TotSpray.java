@@ -4,7 +4,7 @@ package GeoObjects;
  * Created by Michael Goodnow on 2019-04-06.
  */
 
-public class TotSpray extends AObject {
+public class TotSpray extends AGeoObject {
 
   private int objectID;
   private String neighborhood;

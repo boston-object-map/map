@@ -5,7 +5,7 @@ import java.awt.Color;
 /**
  * Abstract class for objects
  */
-public abstract class AObject implements IObject {
+public abstract class AGeoObject implements IGeoObject {
 
   protected double X;
   protected double Y;
@@ -16,7 +16,7 @@ public abstract class AObject implements IObject {
    * @param X X Coordinate
    * @param Y Y Coordinate
    */
-  AObject(int X, int Y){
+  AGeoObject(int X, int Y){
     this.X = X;
     this.Y = Y;
   }
