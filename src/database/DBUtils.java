@@ -4,7 +4,6 @@ import GeoObjects.College;
 import GeoObjects.IGeoObject;
 
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
@@ -32,9 +31,6 @@ public class DBUtils {
 
 		dbUtils.getConnection();
 		List<IGeoObject> geodes = dbUtils.getObjectsInView("X, Y, OBJECTID, Name, Address, PhoneNumbe, NumStudents13", "college", -80, -60, 40, 44, College::buildColleges);
-		for (IGeoObject college : geodes) {
-			System.out.println(college.getInformation());
-		}
 		dbUtils.closeConnection();
 
 	}

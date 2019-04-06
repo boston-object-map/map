@@ -1,5 +1,10 @@
 package GeoObjects;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Michael Goodnow on 2019-04-06.
  */
@@ -24,7 +29,7 @@ public class ChargingStation extends AGeoObject {
    */
   public ChargingStation(double X, double Y, int objectID, String stationName,
                   String streetName, String streetAddress,String city, int zip,
-                  String stationOperator, String stationOperatorSite, String connectorType) {
+                  String stationOperator, String connectorType) {
     super(X, Y);
     this.objectID = objectID;
     this.stationName = stationName;
@@ -50,5 +55,10 @@ public class ChargingStation extends AGeoObject {
     ret.append("\nOwner: " + this.stationOperator + " site: " + this.stationOperatorSite);
     ret.append("\nConnector Type: " + this.connectorType);
     return ret.toString();
+  }
+
+  public static List<IGeoObject> buildChargingStations(ResultSet rs) {
+    // TODO
+    return null;
   }
 }

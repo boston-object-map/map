@@ -1,5 +1,8 @@
 package GeoObjects;
 
+import java.sql.ResultSet;
+import java.util.List;
+
 /**
  * Created by Michael Goodnow on 2019-04-06.
  */
@@ -24,5 +27,10 @@ public class PublicLibrary extends AGeoObject {
   @Override
   public String getInformation() {
     return "Some info about this public library";
+  }
+
+  public static List<IGeoObject> buildPublicLibraries(ResultSet rs) {
+    //TODO
+    return null;
   }
 }

@@ -42,4 +42,5 @@ public abstract class AGeoObject implements IGeoObject {
   public String getInformation(){
     return "future feature";
   }
+
 }

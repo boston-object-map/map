@@ -1,5 +1,8 @@
 package GeoObjects;
 
+import java.sql.ResultSet;
+import java.util.List;
+
 /**
  * Created by Michael Goodnow on 2019-04-06.
  */
@@ -31,5 +34,10 @@ public class TotSpray extends AGeoObject {
   @Override
   public String getObjectType() {
     return "TotSpray";
+  }
+
+  public static List<IGeoObject> buildTotSprays(ResultSet rs) {
+    //TODO
+    return null;
   }
 }
