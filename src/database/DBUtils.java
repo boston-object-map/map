@@ -1,15 +1,18 @@
-import GeoObjects.College;
+package database;
 
-import java.lang.reflect.Method;
+import GeoObjects.College;
+import GeoObjects.IGeoObject;
+
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
+import java.util.function.Function;
 
 /**
  * Created by Michael Goodnow on 2019-04-06.
  */
 
-public class Main {
+public class DBUtils {
 
 
 	private String url;
@@ -17,7 +20,7 @@ public class Main {
 	private String password;
 	private Connection con = null;
 
-	public Main() {
+	public DBUtils() {
 		this.url = System.getenv("DBURL");
 		this.user = System.getenv("DBUSERNAME");
 		this.password = System.getenv("DBPASSWORD");
@@ -25,59 +28,48 @@ public class Main {
 	}
 
 	public static void main(String[] args) throws SQLException {
-		Main main = new Main();
+		DBUtils dbUtils = new DBUtils();
 
-		main.getConnection();
-		main.getObjectsInView("X, Y", "college", -80, -60, 40, 44, main::buildColleges);
-		main.closeConnection();
-
-	}
-
-	private void buildColleges(ResultSet rs) {
-		try {
-			while (rs.next()) {
-				System.out.println(rs.getDouble("X"));
-				System.out.println(rs.getDouble("Y"));
-			}
-		} catch (SQLException e) {
-			System.err.println(e.getMessage());
-			e.printStackTrace();
+		dbUtils.getConnection();
+		List<IGeoObject> geodes = dbUtils.getObjectsInView("X, Y, OBJECTID, Name, Address, PhoneNumbe, NumStudents13", "college", -80, -60, 40, 44, College::buildColleges);
+		for (IGeoObject college : geodes) {
+			System.out.println(college.getInformation());
 		}
+		dbUtils.closeConnection();
+
 	}
 
-	private Connection getConnection() {
-		if (con == null) {
+	public void getConnection() {
+		if (this.con == null) {
 			try {
-				con = DriverManager.getConnection(this.url, this.user, this.password);
-				return con;
+				this.con = DriverManager.getConnection(this.url, this.user, this.password);
 			} catch (SQLException e) {
 				System.err.println(e.getMessage());
 				System.exit(1);
 			}
 		}
-
-		return con;
 	}
 
-	private void closeConnection() {
+	public void closeConnection() {
 		try {
-			con.close();
+			this.con.close();
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
 			e.printStackTrace();
 		}
 	}
 
-	private void getObjectsInView(
+	public List<IGeoObject> getObjectsInView(
 			String columns, String table,
 			double x0, double x1, double y0, double y1,
-			Consumer<ResultSet> builder)
+			Function<ResultSet, List<IGeoObject>> builder)
 			throws SQLException {
 		Statement stmt = con.createStatement();
 		String sqlGet = "SELECT %s FROM %s WHERE X >= %f AND X <= %f AND Y >= %f AND Y <= %f";
 		ResultSet rs = stmt.executeQuery(String.format(sqlGet, columns, table, x0, x1, y0, y1));
-		builder.accept(rs);
+		List<IGeoObject> geoObjects = builder.apply(rs);
 		rs.close();
 		stmt.close();
+		return geoObjects;
 	}
 }

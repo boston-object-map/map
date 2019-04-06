@@ -16,7 +16,7 @@ public abstract class AGeoObject implements IGeoObject {
    * @param X X Coordinate
    * @param Y Y Coordinate
    */
-  AGeoObject(int X, int Y){
+  AGeoObject(double X, double Y){
     this.X = X;
     this.Y = Y;
   }
