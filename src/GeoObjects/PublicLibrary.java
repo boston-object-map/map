@@ -1,6 +1,8 @@
 package GeoObjects;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -9,14 +11,22 @@ import java.util.List;
 
 public class PublicLibrary extends AGeoObject {
 
+
+  private int objectID;
+  private String streetAddress;
+  private String branch;
+
   /**
    * Constructor for object which has an X and Y coordinate
    *
    * @param X X Coordinate
    * @param Y Y Coordinate
    */
-  PublicLibrary(double X, double Y) {
+  PublicLibrary(double X, double Y, int objectID, String streetAddress, String branch) {
     super(X, Y);
+    this.objectID = objectID;
+    this.streetAddress = streetAddress;
+    this.branch = branch;
   }
 
   @Override
@@ -30,7 +40,21 @@ public class PublicLibrary extends AGeoObject {
   }
 
   public static List<IGeoObject> buildPublicLibraries(ResultSet rs) {
-    //TODO
-    return null;
+    List<IGeoObject> libraries = new ArrayList<>();
+    try {
+      while (rs.next()) {
+        libraries.add(new PublicLibrary(
+                rs.getDouble("X"),
+                rs.getDouble("Y"),
+                rs.getInt("OBJECTID"),
+                rs.getString("ST_ADDRESS"),
+                rs.getString("BRANCH")));
+      }
+      return libraries;
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
   }
 }

@@ -1,6 +1,8 @@
 package GeoObjects;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,7 +43,23 @@ public class ParkingMeter extends AGeoObject {
   }
 
   public static List<IGeoObject> buildParkingMeters(ResultSet rs) {
-    // TODO
-    return null;
+    List<IGeoObject> meters = new ArrayList<>();
+    try {
+      while (rs.next()) {
+        meters.add(new ParkingMeter(
+                rs.getDouble("X"),
+                rs.getDouble("Y"),
+                rs.getInt("OBJECTID"),
+                rs.getString("PAY_POLICY"),
+                rs.getString("PARK_NO_PAY"),
+                rs.getString("STREET"),
+                rs.getDouble("BASE_RATE")));
+      }
+      return meters;
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
   }
 }

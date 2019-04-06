@@ -1,6 +1,8 @@
 package GeoObjects;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,7 +29,20 @@ public class Streetlight extends AGeoObject {
   }
 
   public static List<IGeoObject> buildStreetlights(ResultSet rs) {
-    // TODO
-    return null;
+    List<IGeoObject> streetlights = new ArrayList<>();
+    try {
+      while (rs.next()) {
+        streetlights.add(new Streetlight(
+                rs.getDouble("X"),
+                rs.getDouble("Y"),
+                rs.getInt("ObjectID"),
+                rs.getString("Type")));
+      }
+      return streetlights;
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
   }
 }

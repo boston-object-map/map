@@ -1,6 +1,8 @@
 package GeoObjects;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,7 +26,20 @@ public class Tree extends AGeoObject {
   }
 
   public static List<IGeoObject> buildTrees(ResultSet rs) {
-    //TODO
-    return null;
+    List<IGeoObject> trees = new ArrayList<>();
+    try {
+      while (rs.next()) {
+        trees.add(new Tree(
+                rs.getDouble("X"),
+                rs.getDouble("Y"),
+                rs.getInt("OBJECTID"),
+                rs.getString("TYPE")));
+      }
+      return trees;
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
   }
 }

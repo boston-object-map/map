@@ -14,11 +14,7 @@ public class ChargingStation extends AGeoObject {
   private int objectID;
   private String stationName;
   private String streetAddress;
-  private String streetName;
-  private String city;
-  private int zip;
   private String stationOperator;
-  private String stationOperatorSite;
   private String connectorType;
 
   /**
@@ -27,18 +23,13 @@ public class ChargingStation extends AGeoObject {
    * @param X X Coordinate
    * @param Y Y Coordinate
    */
-  public ChargingStation(double X, double Y, int objectID, String stationName,
-                  String streetName, String streetAddress,String city, int zip,
+  public ChargingStation(double X, double Y, int objectID, String stationName, String streetAddress,
                   String stationOperator, String connectorType) {
     super(X, Y);
     this.objectID = objectID;
     this.stationName = stationName;
-    this.streetName = streetName;
     this.streetAddress = streetAddress;
-    this.city = city;
-    this.zip = zip;
     this.stationOperator = stationOperator;
-    this.stationOperatorSite = stationOperatorSite;
     this.connectorType = connectorType;
   }
 
@@ -50,15 +41,30 @@ public class ChargingStation extends AGeoObject {
   @Override
   public String getInformation() {
     StringBuilder ret = new StringBuilder();
-    ret.append(String.format("Charging station.\nAddress: %s, %s, %d", this.streetAddress,
-            this.city, this.zip));
-    ret.append("\nOwner: " + this.stationOperator + " site: " + this.stationOperatorSite);
+    ret.append(String.format("Charging station.\nAddress: %s", this.streetAddress));
+    ret.append("\nOwner: " + this.stationOperator + " site: ");
     ret.append("\nConnector Type: " + this.connectorType);
     return ret.toString();
   }
 
   public static List<IGeoObject> buildChargingStations(ResultSet rs) {
-    // TODO
-    return null;
+    List<IGeoObject> chargers = new ArrayList<>();
+    try {
+      while (rs.next()) {
+        chargers.add(new ChargingStation(
+                rs.getDouble("X"),
+                rs.getDouble("Y"),
+                rs.getInt("OBJECTID"),
+                rs.getString("Station_Name"),
+                rs.getString("Street_Address"),
+                rs.getString("Station_Operator"),
+                rs.getString("EV_Connector_Types")));
+      }
+      return chargers;
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
   }
 }

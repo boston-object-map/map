@@ -1,6 +1,8 @@
 package GeoObjects;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -37,7 +39,22 @@ public class TotSpray extends AGeoObject {
   }
 
   public static List<IGeoObject> buildTotSprays(ResultSet rs) {
-    //TODO
-    return null;
+    List<IGeoObject> sprays = new ArrayList<>();
+    try {
+      while (rs.next()) {
+        sprays.add(new TotSpray(
+                rs.getDouble("X"),
+                rs.getDouble("Y"),
+                rs.getInt("OBJECTID"),
+                rs.getString("Neighborho"),
+                rs.getString("Park_Name"),
+                rs.getString("Address_Te")));
+      }
+      return sprays;
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
   }
 }

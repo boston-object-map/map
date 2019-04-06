@@ -1,6 +1,8 @@
 package GeoObjects;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +33,20 @@ public class TrafficSignal extends AGeoObject {
   }
 
   public static List<IGeoObject> buildTrafficSignals(ResultSet rs) {
-    //TODO
-    return null;
+    List<IGeoObject> signals = new ArrayList<>();
+    try {
+      while (rs.next()) {
+        signals.add(new TrafficSignal(
+                rs.getDouble("X"),
+                rs.getDouble("Y"),
+                rs.getInt("OBJECTID"),
+                rs.getString("Location")));
+      }
+      return signals;
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
   }
 }

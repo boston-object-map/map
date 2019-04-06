@@ -1,6 +1,8 @@
 package GeoObjects;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -35,7 +37,22 @@ public class FireHydrant extends AGeoObject {
   }
 
   public static List<IGeoObject> buildFireHydrants(ResultSet rs) {
-    // TODO
-    return null;
+    List<IGeoObject> hydrants = new ArrayList<>();
+    try {
+      while (rs.next()) {
+        hydrants.add(new FireHydrant(
+                rs.getDouble("X"),
+                rs.getDouble("Y"),
+                rs.getInt("OBJECTID"),
+                rs.getString("PLACEMENT_DATE_TIME"),
+                rs.getString("HYDRANT_MANUF_CODE"),
+                rs.getString("HYDRANT_MODEL_CODE")));
+      }
+      return hydrants;
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
   }
 }
