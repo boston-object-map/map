@@ -22,7 +22,7 @@ public class ChargingStation extends AGeoObject {
    * @param X X Coordinate
    * @param Y Y Coordinate
    */
-  ChargingStation(int X, int Y, int objectID, String stationName,
+  public ChargingStation(double X, double Y, int objectID, String stationName,
                   String streetName, String streetAddress,String city, int zip,
                   String stationOperator, String stationOperatorSite, String connectorType) {
     super(X, Y);

@@ -22,7 +22,7 @@ public class ParkingMeter extends AGeoObject {
    * @param street
    * @param baseRate
    */
-  public ParkingMeter(int X, int Y, int objectID, String payPolicy,
+  public ParkingMeter(double X, double Y, int objectID, String payPolicy,
                       String freeParkingTime, String street, double baseRate) {
     super(X, Y);
     this.objectID = objectID;

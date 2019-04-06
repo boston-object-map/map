@@ -12,7 +12,7 @@ public class PublicLibrary extends AGeoObject {
    * @param X X Coordinate
    * @param Y Y Coordinate
    */
-  PublicLibrary(int X, int Y) {
+  PublicLibrary(double X, double Y) {
     super(X, Y);
   }
 

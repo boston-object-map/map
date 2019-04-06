@@ -18,7 +18,7 @@ public class FireHydrant extends AGeoObject {
    * @param X X Coordinate
    * @param Y Y Coordinate
    */
-  FireHydrant(int X, int Y, int objectID, String placementDT, String manufacturer, String model) {
+  public FireHydrant(double X, double Y, int objectID, String placementDT, String manufacturer, String model) {
     super(X, Y);
     this.objectID = objectID;
     this.placementDT = placementDT;

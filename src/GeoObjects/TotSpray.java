@@ -20,7 +20,7 @@ public class TotSpray extends AGeoObject {
    * @param parkName
    * @param address
    */
-  public TotSpray(int X, int Y, int objectID, String neighborhood, String parkName, String address) {
+  public TotSpray(double X, double Y, int objectID, String neighborhood, String parkName, String address) {
     super(X, Y);
     this.objectID = objectID;
     this.neighborhood = neighborhood;

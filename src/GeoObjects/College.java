@@ -18,7 +18,7 @@ public class College extends AGeoObject {
    * @param X X Coordinate
    * @param Y Y Coordinate
    */
-  College(int X, int Y, int objectID, String name,
+  public College(double X, double Y, int objectID, String name,
           String address, String phoneNumber, int numStudents) {
     super(X, Y);
     this.objectID = objectID;

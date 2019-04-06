@@ -16,7 +16,7 @@ public class TrafficSignal extends AGeoObject {
    * @param objectID
    * @param intersection
    */
-  public TrafficSignal(int X, int Y, int objectID, String intersection) {
+  public TrafficSignal(double X, double Y, int objectID, String intersection) {
     super(X, Y);
     this.objectID = objectID;
     this.intersection = intersection;

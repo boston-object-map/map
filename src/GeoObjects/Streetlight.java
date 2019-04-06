@@ -12,7 +12,7 @@ public class Streetlight extends AGeoObject {
   /**
    * Constructs a new Streetlight object.
    */
-  public Streetlight(int X, int Y, int objectID, String type) {
+  public Streetlight(double X, double Y, int objectID, String type) {
     super(X, Y);
     this.objectID = objectID;
     this.type = type;

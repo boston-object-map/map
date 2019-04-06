@@ -9,7 +9,7 @@ public class Tree extends AGeoObject {
   private int objectID;
   private String type;
 
-  public Tree(int X, int Y, int objectID, String type) {
+  public Tree(double X, double Y, int objectID, String type) {
     super(X, Y);
     this.objectID = objectID;
     this.type = type;
