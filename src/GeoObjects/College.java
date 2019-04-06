@@ -1,5 +1,10 @@
 package GeoObjects;
 
+        import java.sql.ResultSet;
+        import java.sql.SQLException;
+        import java.util.ArrayList;
+        import java.util.List;
+
 /**
  * Created by Michael Goodnow on 2019-04-06.
  */
@@ -19,7 +24,11 @@ public class College extends AGeoObject {
    * @param Y Y Coordinate
    */
   public College(double X, double Y, int objectID, String name,
+<<<<<<< HEAD
           String address, String phoneNumber, int numStudents) {
+=======
+                 String address, String phoneNumber, int numStudents) {
+>>>>>>> 951bb018e0f9870b6f330c5ef1c6946a7980ac1f
     super(X, Y);
     this.objectID = objectID;
     this.name = name;
@@ -35,6 +44,28 @@ public class College extends AGeoObject {
 
   @Override
   public String getInformation() {
-    return "TBD";
+    return this.name + " " + this.address;
+  }
+
+
+  public static List<IGeoObject> buildColleges(ResultSet rs) {
+    List<IGeoObject> colleges = new ArrayList<>();
+    try {
+      while (rs.next()) {
+        colleges.add(new College(
+                rs.getDouble("X"),
+                rs.getDouble("Y"),
+                rs.getInt("OBJECTID"),
+                rs.getString("Name"),
+                rs.getString("Address"),
+                rs.getString("PhoneNumbe"),
+                rs.getInt("NumStudents13")));
+      }
+      return colleges;
+    } catch (SQLException e) {
+      System.err.println(e.getMessage());
+      e.printStackTrace();
+      return null;
+    }
   }
 }
