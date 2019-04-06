@@ -38,5 +38,8 @@ public abstract class AObject implements IObject {
 
   abstract public String getObjectType();
 
-  abstract public String getInformation();
+  @Override
+  public String getInformation(){
+    return "future feature";
+  }
 }
