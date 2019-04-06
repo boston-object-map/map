@@ -1,3 +1,5 @@
+package GeoObjects;
+
 import java.awt.Color;
 
 /**
