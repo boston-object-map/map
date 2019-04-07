@@ -1,5 +1,6 @@
 package GeoObjects;
 
+import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class ChargingStation extends AGeoObject {
     this.streetAddress = streetAddress;
     this.stationOperator = stationOperator;
     this.connectorType = connectorType;
+    this.C = Color.ORANGE;
   }
 
   @Override

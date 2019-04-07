@@ -1,5 +1,6 @@
 package GeoObjects;
 
+        import java.awt.*;
         import java.sql.ResultSet;
         import java.sql.SQLException;
         import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class College extends AGeoObject {
     this.address = address;
     this.phoneNumber = phoneNumber;
     this.numStudents = numStudents;
+    this.C = Color.PINK;
   }
 
   @Override

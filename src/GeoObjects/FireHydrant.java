@@ -1,5 +1,6 @@
 package GeoObjects;
 
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class FireHydrant extends AGeoObject {
     this.placementDT = placementDT;
     this.manufacturer = manufacturer;
     this.model = model;
+    this.C = Color.RED;
   }
 
   @Override

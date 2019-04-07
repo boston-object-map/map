@@ -1,5 +1,6 @@
 package GeoObjects;
 
+import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class PublicLibrary extends AGeoObject {
     this.objectID = objectID;
     this.streetAddress = streetAddress;
     this.branch = branch;
+    this.C = new Color(102,51,0);
   }
 
   @Override

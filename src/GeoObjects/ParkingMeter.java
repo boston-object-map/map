@@ -1,5 +1,6 @@
 package GeoObjects;
 
+import java.awt.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class ParkingMeter extends AGeoObject {
     this.freeParkingTime = freeParkingTime;
     this.street = street;
     this.baseRate = baseRate;
+    this.C = Color.GRAY;
   }
 
   @Override

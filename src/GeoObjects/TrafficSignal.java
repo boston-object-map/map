@@ -1,5 +1,6 @@
 package GeoObjects;
 
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class TrafficSignal extends AGeoObject {
     super(X, Y);
     this.objectID = objectID;
     this.intersection = intersection;
+    this.C = Color.BLACK;
   }
 
   @Override
