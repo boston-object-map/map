@@ -24,15 +24,15 @@ public class AnimationPanel extends JPanel {
 
   private int longToX(double x) {
     double temp1 = x % 0.00001;
-    temp1 = temp1 - 42.32881;
+    temp1 = temp1 + 71.12411;
     int temp2 = (int) temp1 * 10000;
     return temp2;
   }
 
   private int latToY(double y) {
     double temp1 = y % 0.00001;
-    temp1 = temp1 + 71.12411;
-    int temp2 = (int) temp1 * 10000;
+    temp1 = temp1 - 42.32881;
+    int temp2 = 4088 - ((int) temp1 * 10000);
     return temp2;
   }
 
