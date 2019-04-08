@@ -19,7 +19,7 @@ public class Tree extends AGeoObject {
     super(X, Y);
     this.objectID = objectID;
     this.type = type;
-    this.C = Color.GREEN;
+    this.C = new Color(3, 170, 18);
   }
 
   @Override

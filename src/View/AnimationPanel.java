@@ -1,4 +1,4 @@
-package view;
+package View;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -15,7 +15,7 @@ public class AnimationPanel extends JPanel {
 
   public AnimationPanel() {
     super();
-    this.setBackground(Color.WHITE);
+    this.setBackground(Color.lightGray);
   }
 
   public void setObjects(List<IGeoObject> list) {
@@ -53,7 +53,7 @@ public class AnimationPanel extends JPanel {
 
 
       g2d.setColor(i.getColor());
-      g2d.fillOval(x, y, 5, 5);
+      g2d.fillOval(x, y, 7, 7);
     }
 
     System.out.println("Finished drawing");

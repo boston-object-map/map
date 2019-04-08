@@ -22,7 +22,7 @@ public class Streetlight extends AGeoObject {
     super(X, Y);
     this.objectID = objectID;
     this.type = type;
-    this.C = Color.YELLOW;
+    this.C = new Color(239, 235, 4);
   }
 
   @Override
