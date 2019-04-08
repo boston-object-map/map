@@ -14,6 +14,7 @@ import GeoObjects.Streetlight;
 import GeoObjects.TotSpray;
 import GeoObjects.TrafficSignal;
 import GeoObjects.Tree;
+import View.MapView;
 import database.DBUtils;
 
 public class DataTranslator implements IDataTranslator {
@@ -30,14 +31,63 @@ public class DataTranslator implements IDataTranslator {
 
   public static void main(String[] args) throws SQLException {
     DataTranslator dt = new DataTranslator();
+    List<IGeoObject> list = dt.getObjectsInView(-71.12411, -71.04718, 42.32881, 42.36968);
+    System.out.println("Amount of data = " + list.size());
+    MapView mv = new MapView(list);
+    mv.run();
+    /*
     for(IGeoObject igo : dt.getObjectsOfType("tree")) {
       System.out.println(igo.getInformation());
     }
+    */
   }
 
   @Override
-  public List<IGeoObject> getObjectsInView(double upperLeft, double upperRight, double lowerLeft, double lowerRight) {
-    return null;
+  public List<IGeoObject> getObjectsInView(double lowerX, double upperX, double lowerY, double upperY) {
+    String[] objects = new String[]{"college", "chargingstation", "firehydrant",
+    "parkingmeter", "publiclibrary", "streetlight", "totspray", "trafficsignal", "tree"};
+    List<IGeoObject> list = new ArrayList<>();
+
+    for (String i: objects) {
+      try {
+        switch (i) {
+          case "college":
+            list.addAll(this.dbu.getObjectsInView("X, Y, OBJECTID, Name, Address, PhoneNumbe, NumStudents13", "college", lowerX, upperX, lowerY, upperY, College::buildColleges));
+            break;
+          case "chargingstation":
+            list.addAll(this.dbu.getObjectsInView("X, Y, OBJECTID, Station_Name, Street_Address, Station_Operator, EV_Connector_Types", "charging_station", lowerX, upperX, lowerY, upperY, ChargingStation::buildChargingStations));
+            break;
+          case "firehydrant":
+            list.addAll(this.dbu.getObjectsInView("X, Y, OBJECTID, placement_date_time, hydrant_manuf_code, hydrant_model_code", "fire_hydrant", lowerX, upperX, lowerY, upperY, FireHydrant::buildFireHydrants));
+            break;
+          case "parkingmeter":
+            list.addAll(this.dbu.getObjectsInView("X, Y, OBJECTID, pay_policy, park_no_pay, street, base_rate", "parking_meter", lowerX, upperX, lowerY, upperY, ParkingMeter::buildParkingMeters));
+            break;
+          case "publiclibrary":
+            list.addAll(this.dbu.getObjectsInView("X, Y, OBJECTID, branch, st_address", "public_library", lowerX, upperX, lowerY, upperY, PublicLibrary::buildPublicLibraries));
+            break;
+          case "streetlight":
+            list.addAll(this.dbu.getObjectsInView("X, Y, OBJECTID, type", "streetlight", lowerX, upperX, lowerY, upperY, Streetlight::buildStreetlights));
+            break;
+          case "totspray":
+            list.addAll(this.dbu.getObjectsInView("X, Y, OBJECTID, park_name, neighborho, address_te", "tot_spray", lowerX, upperX, lowerY, upperY, TotSpray::buildTotSprays));
+            break;
+          case "trafficsignal":
+            list.addAll(this.dbu.getObjectsInView("X, Y, OBJECTID, Location", "traffic_signal", lowerX, upperX, lowerY, upperY, TrafficSignal::buildTrafficSignals));
+            break;
+          case "tree":
+            list.addAll(this.dbu.getObjectsInView("X, Y, OBJECTID, type", "tree", lowerX, upperX, lowerY, upperY, Tree::buildTrees));
+            break;
+          default:
+            throw new IllegalArgumentException("No GeoObjects of type " + i);
+        }
+      } catch (java.sql.SQLException j) {
+        //TODO
+        j.printStackTrace();
+        throw new IllegalArgumentException("SQL error");
+      }
+    }
+    return list;
   }
 
   @Override
