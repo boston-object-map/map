@@ -12,6 +12,7 @@ package GeoObjects;
 
 public class College extends AGeoObject {
 
+  public static Color c = Color.PINK;
   private int objectID;
   private String name;
   private String address;
@@ -32,7 +33,6 @@ public class College extends AGeoObject {
     this.address = address;
     this.phoneNumber = phoneNumber;
     this.numStudents = numStudents;
-    this.C = Color.PINK;
   }
 
   @Override
@@ -64,5 +64,10 @@ public class College extends AGeoObject {
       e.printStackTrace();
       return null;
     }
+  }
+
+  @Override
+  public Color getColor() {
+    return College.c;
   }
 }

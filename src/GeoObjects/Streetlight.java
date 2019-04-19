@@ -12,6 +12,7 @@ import java.util.List;
 
 public class Streetlight extends AGeoObject {
 
+  public static Color c = Color.yellow;
   private int objectID;
   private String type;
 
@@ -22,7 +23,11 @@ public class Streetlight extends AGeoObject {
     super(X, Y);
     this.objectID = objectID;
     this.type = type;
-    this.C = new Color(239, 235, 4);
+  }
+
+  @Override
+  public Color getColor() {
+    return Streetlight.c;
   }
 
   @Override
