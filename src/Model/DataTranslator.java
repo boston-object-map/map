@@ -14,7 +14,6 @@ import GeoObjects.Streetlight;
 import GeoObjects.TotSpray;
 import GeoObjects.TrafficSignal;
 import GeoObjects.Tree;
-import View.MapView;
 import Database.DBUtils;
 
 public class DataTranslator implements IDataTranslator {
@@ -27,19 +26,6 @@ public class DataTranslator implements IDataTranslator {
   public DataTranslator() {
     this.dbu = new DBUtils();
     dbu.getConnection();
-  }
-
-  public static void main(String[] args) throws SQLException {
-    DataTranslator dt = new DataTranslator();
-    List<IGeoObject> list = dt.getObjectsInView(-71.12411, -71.04718, 42.32881, 42.36968);
-    System.out.println("Amount of data = " + list.size());
-    MapView mv = new MapView(list);
-    mv.run();
-    /*
-    for(IGeoObject igo : dt.getObjectsOfType("tree")) {
-      System.out.println(igo.getInformation());
-    }
-    */
   }
 
   @Override

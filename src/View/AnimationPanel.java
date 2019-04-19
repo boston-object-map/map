@@ -25,13 +25,13 @@ public class AnimationPanel extends JPanel {
   private int longToX(double x) {
     double temp1 = x + 71.12411;
     int temp2 = (int) (temp1 * 100000);
-    return temp2;
+    return (temp2 / 9) + 800;
   }
 
   private int latToY(double y) {
     double temp1 = y - 42.32881;
     int temp2 = 4088 - ((int) (temp1 * 100000));
-    return temp2;
+    return temp2 / 9 + 200;
   }
 
   @Override
@@ -46,17 +46,13 @@ public class AnimationPanel extends JPanel {
     */
 
     for (IGeoObject i : Objects) {
-
       int x = longToX(i.getX());
       int y = latToY(i.getY());
-      System.out.println(x + " - " + y);
-
 
       g2d.setColor(i.getColor());
-      g2d.fillOval(x, y, 7, 7);
+      g2d.fillOval(x, y, 3, 3);
     }
 
     System.out.println("Finished drawing");
-
   }
 }
