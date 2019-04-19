@@ -1,15 +1,17 @@
 package View;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.*;
-
 import GeoObjects.IGeoObject;
 import Model.IDataTranslator;
 
-public class MapView extends JFrame {
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
+import java.util.List;
+
+public class MapView extends JFrame implements ItemListener {
 
   private List<IGeoObject> objects = new ArrayList<>();
   private AnimationPanel animationPanel;
@@ -17,8 +19,15 @@ public class MapView extends JFrame {
 
 
   //These keep track of what objects we are rendering. Direct mutation from
-  boolean college = true, chargingStation = true, fireHydrant = true, parkingMeter = true,
-          publicLibrary = true, streetLight = true, totspray = true, trafficSignal = true, tree = true;
+  private boolean college = true,
+          chargingStation = true,
+          fireHydrant = true,
+          parkingMeter = true,
+          publicLibrary = true,
+          streetLight = true,
+          totspray = true,
+          trafficSignal = true,
+          tree = true;
 
   public MapView(IDataTranslator dt) {
     super();
@@ -59,9 +68,10 @@ public class MapView extends JFrame {
     if(tree) {
       this.objects.addAll(dt.getObjectsOfType("tree"));
     }
+    this.repaint();
   }
 
-  private void render() {
+  public void render() {
     this.setLayout(new BorderLayout());
 
     animationPanel = new AnimationPanel();
@@ -71,18 +81,44 @@ public class MapView extends JFrame {
             JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     this.add(visualScrollPane, BorderLayout.CENTER);
+    ButtonPanel buttonPanel = new ButtonPanel(this);
+    this.add(buttonPanel, BorderLayout.WEST);
 
-    /*
-    try {
-      TimeUnit.SECONDS.sleep(30);
-    } catch(Exception e) {
-
-    }
-    */
     this.setVisible(true);
   }
 
-  public void run() {
-    render();
+  @Override
+  public void itemStateChanged(ItemEvent e) {
+    boolean newState = e.getStateChange() == ItemEvent.SELECTED;
+    switch (((JCheckBox)e.getItem()).getText()) {
+      case ("EV Charging Stations"):
+        this.chargingStation = newState;
+        break;
+      case ("Colleges"):
+        this.college = newState;
+        break;
+      case("Fire Hydrants"):
+        this.fireHydrant = newState;
+        break;
+      case("Parking Meters"):
+        this.parkingMeter = newState;
+        break;
+      case("Public Libraries"):
+        this.publicLibrary = newState;
+        break;
+      case("Streetlights"):
+        this.streetLight = newState;
+        break;
+      case("Tot Sprays"):
+        this.totspray = newState;
+        break;
+      case("Traffic Signals"):
+        this.trafficSignal = newState;
+        break;
+      case("Trees"):
+        this.tree = newState;
+        break;
+    }
+    this.refresh();
   }
 }

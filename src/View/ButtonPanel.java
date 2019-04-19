@@ -1,7 +1,8 @@
 package View;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 
 /**
  * Created by Michael Goodnow on 2019-04-19.
@@ -9,39 +10,28 @@ import java.awt.*;
 
 public class ButtonPanel extends JPanel {
 
-  public ButtonPanel() {
+  static String[] objectTypes = {
+          "EV Charging Stations",
+          "Colleges",
+          "Fire Hydrants",
+          "Parking Meters",
+          "Public Libraries",
+          "Streetlights",
+          "Tot Sprays",
+          "Traffic Signals",
+          "Trees"
+  };
+
+  public ButtonPanel(ItemListener listener) {
     super();
-    JCheckBox box = null;
-    box = new JCheckBox("EV Charging Stations");
-    box.setSelected(true);
-    this.add(box);
-    box = new JCheckBox("EV Charging Stations");
-    box.setSelected(true);
-    this.add(box);
-    box = new JCheckBox("Colleges");
-    box.setSelected(true);
-    this.add(box);
-    box = new JCheckBox("Fire Hydrants");
-    box.setSelected(true);
-    this.add(box);
-    box = new JCheckBox("Parking Meters");
-    box.setSelected(true);
-    this.add(box);
-    box = new JCheckBox("Public Libraries");
-    box.setSelected(true);
-    this.add(box);
-    box = new JCheckBox("Streetlights");
-    box.setSelected(true);
-    this.add(box);
-    box = new JCheckBox("Tot Sprays");
-    box.setSelected(true);
-    this.add(box);
-    box = new JCheckBox("Traffic Signals");
-    box.setSelected(true);
-    this.add(box);
-    box = new JCheckBox("Trees");
-    box.setSelected(true);
-    this.add(box);
+
+    for (String type : objectTypes) {
+      JCheckBox box = new JCheckBox(type);
+      box.setSelected(true);
+      box.addItemListener(listener);
+      this.add(box);
+    }
+
     this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
   }
 }

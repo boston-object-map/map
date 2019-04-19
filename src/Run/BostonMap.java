@@ -20,6 +20,6 @@ public class BostonMap {
   public static void main(String[] args) {
     IDataTranslator dt = new DataTranslator();
     MapView mv = new MapView(dt);
-    mv.run();
+    mv.render();
   }
 }
