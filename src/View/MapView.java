@@ -15,8 +15,7 @@ public class MapView extends JFrame {
   private AnimationPanel animationPanel;
   private IDataTranslator dt;
 
-
-  //These keep track of what objects we are rendering. Direct mutation from
+  //These keep track of what objects we are rendering.
   boolean college = true, chargingStation = true, fireHydrant = true, parkingMeter = true,
           publicLibrary = true, streetLight = true, totspray = true, trafficSignal = true, tree = true;
 
@@ -71,14 +70,6 @@ public class MapView extends JFrame {
             JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,
             JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
     this.add(visualScrollPane, BorderLayout.CENTER);
-
-    /*
-    try {
-      TimeUnit.SECONDS.sleep(30);
-    } catch(Exception e) {
-
-    }
-    */
     this.setVisible(true);
   }
 
