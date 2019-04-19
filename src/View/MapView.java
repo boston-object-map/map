@@ -1,8 +1,7 @@
-package view;
+package View;
 
 import java.awt.*;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
 
