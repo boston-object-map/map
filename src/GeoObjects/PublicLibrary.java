@@ -13,6 +13,7 @@ import java.util.List;
 public class PublicLibrary extends AGeoObject {
 
 
+  public static Color c = Color.MAGENTA;
   private int objectID;
   private String streetAddress;
   private String branch;
@@ -28,7 +29,11 @@ public class PublicLibrary extends AGeoObject {
     this.objectID = objectID;
     this.streetAddress = streetAddress;
     this.branch = branch;
-    this.C = new Color(102,51,0);
+  }
+
+  @Override
+  public Color getColor() {
+    return PublicLibrary.c;
   }
 
   @Override

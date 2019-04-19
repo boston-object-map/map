@@ -25,8 +25,7 @@ public interface IGeoObject {
   double getY();
 
   /**
-   * Return the objects Map Color
-   * @return The objects color on the map
+   * Return the color of the object
    */
   Color getColor();
 

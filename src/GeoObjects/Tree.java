@@ -12,6 +12,7 @@ import java.util.List;
 
 public class Tree extends AGeoObject {
 
+  public static Color c = new Color(30, 170, 70);
   private int objectID;
   private String type;
 
@@ -19,7 +20,11 @@ public class Tree extends AGeoObject {
     super(X, Y);
     this.objectID = objectID;
     this.type = type;
-    this.C = new Color(3, 170, 18);
+  }
+
+  @Override
+  public Color getColor() {
+    return Tree.c;
   }
 
   @Override

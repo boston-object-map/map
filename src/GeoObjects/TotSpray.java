@@ -12,6 +12,7 @@ import java.util.List;
 
 public class TotSpray extends AGeoObject {
 
+  public static Color c = Color.blue;
   private int objectID;
   private String neighborhood;
   private String parkName;
@@ -32,7 +33,11 @@ public class TotSpray extends AGeoObject {
     this.neighborhood = neighborhood;
     this.parkName = parkName;
     this.address = address;
-    this.C = Color.BLUE;
+  }
+
+  @Override
+  public Color getColor() {
+    return TotSpray.c;
   }
 
   @Override

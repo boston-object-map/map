@@ -12,6 +12,8 @@ import java.util.List;
 
 public class ChargingStation extends AGeoObject {
 
+  public static Color c = Color.ORANGE;
+  private static int size;
   private int objectID;
   private String stationName;
   private String streetAddress;
@@ -32,7 +34,7 @@ public class ChargingStation extends AGeoObject {
     this.streetAddress = streetAddress;
     this.stationOperator = stationOperator;
     this.connectorType = connectorType;
-    this.C = Color.ORANGE;
+    this.size = 4;
   }
 
   @Override
@@ -68,5 +70,10 @@ public class ChargingStation extends AGeoObject {
       e.printStackTrace();
       return null;
     }
+  }
+
+  @Override
+  public Color getColor() {
+    return ChargingStation.c;
   }
 }

@@ -12,6 +12,7 @@ import java.util.List;
 
 public class TrafficSignal extends AGeoObject {
 
+  public static Color c = Color.black;
   private int objectID;
   private String intersection;
 
@@ -26,7 +27,11 @@ public class TrafficSignal extends AGeoObject {
     super(X, Y);
     this.objectID = objectID;
     this.intersection = intersection;
-    this.C = Color.BLACK;
+  }
+
+  @Override
+  public Color getColor() {
+    return TrafficSignal.c;
   }
 
   @Override
