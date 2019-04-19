@@ -29,19 +29,6 @@ public class DataTranslator implements IDataTranslator {
     dbu.getConnection();
   }
 
-  public static void main(String[] args) throws SQLException {
-    DataTranslator dt = new DataTranslator();
-    List<IGeoObject> list = dt.getObjectsInView(-71.12411, -71.04718, 42.32881, 42.36968);
-    System.out.println("Amount of data = " + list.size());
-    MapView mv = new MapView(list);
-    mv.run();
-    /*
-    for(IGeoObject igo : dt.getObjectsOfType("tree")) {
-      System.out.println(igo.getInformation());
-    }
-    */
-  }
-
   @Override
   public List<IGeoObject> getObjectsInView(double lowerX, double upperX, double lowerY, double upperY) {
     String[] objects = new String[]{"college", "chargingstation", "firehydrant",
