@@ -5,12 +5,12 @@ import java.util.List;
 import GeoObjects.IGeoObject;
 
 /**
- * Enables users to interact with a database in terms of GeoObjects.
+ * Enables users to interact with a Database in terms of GeoObjects.
  */
 public interface IDataTranslator {
 
   /**
-   * Returns all GeoObjects in a rectangular view.
+   * Returns all GeoObjects in a rectangular View.
    * @param upperX
    * @param upperX
    * @param lowerX

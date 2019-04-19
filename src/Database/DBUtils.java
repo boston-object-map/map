@@ -1,4 +1,4 @@
-package database;
+package Database;
 
 import GeoObjects.College;
 import GeoObjects.IGeoObject;
