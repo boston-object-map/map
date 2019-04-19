@@ -26,8 +26,8 @@ public class MapView extends JFrame {
     this.setTitle("Map of Boston");
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.refresh();
-    this.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
-            (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
+    this.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth(),
+            (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight());
   }
 
   public void refresh() {
