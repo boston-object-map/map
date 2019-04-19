@@ -1,7 +1,7 @@
 package View;
 
 import javax.swing.*;
-import java.awt.event.ActionListener;
+import java.awt.*;
 import java.awt.event.ItemListener;
 
 /**
@@ -31,6 +31,10 @@ public class ButtonPanel extends JPanel {
       box.addItemListener(listener);
       this.add(box);
     }
+    this.add(Box.createRigidArea(new Dimension(5, 10)));
+    JCheckBox box = new JCheckBox("Grayscale");
+    box.addItemListener(listener);
+    this.add(box);
 
     this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
   }

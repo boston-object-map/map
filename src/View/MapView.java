@@ -1,5 +1,6 @@
 package View;
 
+import GeoObjects.ChargingStation;
 import GeoObjects.IGeoObject;
 import Model.IDataTranslator;
 
@@ -118,6 +119,10 @@ public class MapView extends JFrame implements ItemListener {
       case("Trees"):
         this.tree = newState;
         break;
+      case("Grayscale"):
+        this.animationPanel.setBW(newState);
+        this.repaint();
+        return;
     }
     this.refresh();
   }

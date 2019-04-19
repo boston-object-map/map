@@ -14,6 +14,11 @@ public class AnimationPanel extends JPanel {
   private List<IGeoObject> Objects;
 
   private int scaleFactor = 3;
+
+  public void setBW(boolean BW) {
+    isBW = BW;
+  }
+
   private boolean isBW = false;
 
   public AnimationPanel() {
