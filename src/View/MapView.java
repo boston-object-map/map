@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
@@ -10,7 +11,7 @@ import Model.IDataTranslator;
 
 public class MapView extends JFrame {
 
-  private List<IGeoObject> objects;
+  private List<IGeoObject> objects = new ArrayList<>();
   private AnimationPanel animationPanel;
   private IDataTranslator dt;
 
@@ -27,42 +28,36 @@ public class MapView extends JFrame {
     this.refresh();
     this.setSize((int) Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2,
             (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2);
-
-  }
-
-
-  public void setRenderList(List<IGeoObject> list) {
-    this.objects = list;
   }
 
   public void refresh() {
     this.objects.clear();
     if(college) {
-      dt.getObjectsOfType("college");
+      this.objects.addAll(dt.getObjectsOfType("college"));
     }
     if(chargingStation) {
-
+      this.objects.addAll(dt.getObjectsOfType("chargingstation"));
     }
     if(fireHydrant) {
-
+      this.objects.addAll(dt.getObjectsOfType("firehydrant"));
     }
     if(parkingMeter) {
-
+      this.objects.addAll(dt.getObjectsOfType("parkingmeter"));
     }
     if(publicLibrary) {
-
+      this.objects.addAll(dt.getObjectsOfType("publiclibrary"));
     }
     if(streetLight) {
-
+      this.objects.addAll(dt.getObjectsOfType("streetlight"));
     }
     if(totspray) {
-
+      this.objects.addAll(dt.getObjectsOfType("totspray"));
     }
     if(trafficSignal) {
-
+      this.objects.addAll(dt.getObjectsOfType("trafficsignal"));
     }
     if(tree) {
-
+      this.objects.addAll(dt.getObjectsOfType("tree"));
     }
   }
 

@@ -14,7 +14,6 @@ import GeoObjects.Streetlight;
 import GeoObjects.TotSpray;
 import GeoObjects.TrafficSignal;
 import GeoObjects.Tree;
-import View.MapView;
 import Database.DBUtils;
 
 public class DataTranslator implements IDataTranslator {
