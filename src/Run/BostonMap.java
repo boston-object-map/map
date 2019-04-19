@@ -14,8 +14,12 @@ public class BostonMap {
   private IDataTranslator dt;
 
   public BostonMap() {
-    this.dt = new DataTranslator();
-    //this.mp = new MapView();
-    //this.mp.refresh();
+
+  }
+
+  public static void main(String[] args) {
+    IDataTranslator dt = new DataTranslator();
+    MapView mv = new MapView(dt);
+    mv.run();
   }
 }
