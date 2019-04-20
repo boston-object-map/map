@@ -25,9 +25,14 @@ public interface IGeoObject {
   double getY();
 
   /**
-   * Return the color of the object
+   * Return the COLOR of the object
    */
   Color getColor();
+
+  /**
+   * Return the object's animation size
+   */
+  int getSize();
 
   /**
    * Return the objects type as a string

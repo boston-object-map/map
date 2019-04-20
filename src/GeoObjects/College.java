@@ -12,7 +12,9 @@ package GeoObjects;
 
 public class College extends AGeoObject {
 
-  public static Color c = Color.PINK;
+  public static Color COLOR = Color.PINK;
+  public static int SIZE = 30;
+
   private int objectID;
   private String name;
   private String address;
@@ -68,6 +70,10 @@ public class College extends AGeoObject {
 
   @Override
   public Color getColor() {
-    return College.c;
+    return College.COLOR;
+  }
+
+  public int getSize() {
+    return College.SIZE;
   }
 }

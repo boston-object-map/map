@@ -12,7 +12,8 @@ import java.util.List;
 
 public class Tree extends AGeoObject {
 
-  public static Color c = new Color(30, 170, 70);
+  public static Color COLOR = new Color(30, 170, 70);
+  public static int SIZE = 2;
   private int objectID;
   private String type;
 
@@ -24,7 +25,7 @@ public class Tree extends AGeoObject {
 
   @Override
   public Color getColor() {
-    return Tree.c;
+    return Tree.COLOR;
   }
 
   @Override
@@ -48,5 +49,9 @@ public class Tree extends AGeoObject {
       e.printStackTrace();
       return null;
     }
+  }
+
+  public int getSize() {
+    return Tree.SIZE;
   }
 }

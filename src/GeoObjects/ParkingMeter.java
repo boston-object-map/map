@@ -12,7 +12,8 @@ import java.util.List;
 
 public class ParkingMeter extends AGeoObject {
 
-  public static Color c = Color.GRAY;
+  public static Color COLOR = Color.GRAY;
+  public static int SIZE = 2;
   private int objectID;
   private String payPolicy;
   private String freeParkingTime;
@@ -41,7 +42,7 @@ public class ParkingMeter extends AGeoObject {
 
   @Override
   public Color getColor() {
-    return ParkingMeter.c;
+    return ParkingMeter.COLOR;
   }
 
   @Override
@@ -68,5 +69,9 @@ public class ParkingMeter extends AGeoObject {
       e.printStackTrace();
       return null;
     }
+  }
+
+  public int getSize() {
+    return ParkingMeter.SIZE;
   }
 }

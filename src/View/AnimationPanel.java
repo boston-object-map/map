@@ -1,65 +1,74 @@
 package View;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.util.List;
-
-import javax.swing.JPanel;
-
 import GeoObjects.IGeoObject;
+import javafx.animation.Animation;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.Point2D;
+import java.util.List;
 
 public class AnimationPanel extends JPanel {
 
+  float scaleFactor = 1;
   private List<IGeoObject> Objects;
-
-  private int scaleFactor = 3;
-
-  public void setBW(boolean BW) {
-    isBW = BW;
-  }
-
   private boolean isBW = false;
+  private AffineTransform transform;
+  Dimension originalDimensions = new Dimension(1620, 1000);
 
   public AnimationPanel() {
     super();
+    this.setPreferredSize(originalDimensions);
     this.setBackground(Color.lightGray);
   }
 
-  public void setScaleFactor(int newSF){
-    this.scaleFactor = newSF;
+  private static AffineTransform setTransform(
+          double xInTL, double yInTL,
+          double xInBR, double yInBR,
+          double xOutTL, double yOutTL,
+          double xOutBR, double yOutBR) {
+    double mx = (xOutBR - xOutTL) / (xInBR - xInTL);
+    double bx = xOutTL - mx * xInTL;
+    double my = (yOutBR - yOutTL) / (yInBR - yInTL);
+    double by = yOutTL - my * yInTL;
+    return new AffineTransform(mx, 0, 0, my, bx, by);
+  }
+
+  private void setTransform() {
+    this.transform = AnimationPanel.setTransform(
+            -71.19068644599304, 42.23266795011358,
+            -70.92452129861498, 42.39691380314959,
+            0, 0,
+            this.getWidth(), this.getHeight());
+  }
+
+  public void setBW(boolean BW) {
+    isBW = BW;
   }
 
   public void setObjects(List<IGeoObject> list) {
     this.Objects = list;
   }
 
-  private int longToX(double x) {
-    double temp1 = x + 71.12411;
-    int temp2 = (int) (temp1 * 100000);
-    return (temp2 / this.scaleFactor) + 900;
-  }
-
-  /**
-   * Magic math. Not the best way to do this but it gets the job done.
-   * @param y
-   * @return
-   */
-  private int latToY(double y) {
-    double temp1 = y - 42.32881;
-    int temp2 = 4088 - ((int) (temp1 * 100000));
-    return temp2 / this.scaleFactor + 300;
+  public void scaleDimensions() {
+    Dimension dim = this.originalDimensions;
+    this.setPreferredSize(new Dimension(
+            (int) (dim.getWidth() * this.scaleFactor),
+            (int) (dim.getHeight() * this.scaleFactor)));
+    this.setTransform();
+    this.revalidate();
   }
 
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
+    this.setTransform();
 
     Graphics2D g2d = (Graphics2D) g;
 
     for (IGeoObject i : Objects) {
-      int x = longToX(i.getX());
-      int y = latToY(i.getY());
+
 
       if(this.isBW) {
         g2d.setColor(Color.black);
@@ -67,9 +76,12 @@ public class AnimationPanel extends JPanel {
       else {
         g2d.setColor(i.getColor());
       }
-      g2d.fillOval(x, y, 3, 3);
+      Point2D posn = this.transform.transform(new Point2D.Double(i.getX(), i.getY()), null);
+      g2d.fillOval(
+              (int)posn.getX(),
+              this.getHeight() - (int)posn.getY(),
+              (int) Math.max(2, Math.round(Math.sqrt(i.getSize() * this.scaleFactor))),
+              (int) Math.max(2, Math.round(Math.sqrt(i.getSize() * this.scaleFactor))));
     }
-
-    System.out.println("Finished drawing");
   }
 }

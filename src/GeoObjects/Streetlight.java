@@ -12,7 +12,8 @@ import java.util.List;
 
 public class Streetlight extends AGeoObject {
 
-  public static Color c = Color.yellow;
+  public static Color COLOR = Color.yellow;
+  public static int SIZE = 2;
   private int objectID;
   private String type;
 
@@ -27,7 +28,7 @@ public class Streetlight extends AGeoObject {
 
   @Override
   public Color getColor() {
-    return Streetlight.c;
+    return Streetlight.COLOR;
   }
 
   @Override
@@ -51,5 +52,9 @@ public class Streetlight extends AGeoObject {
       e.printStackTrace();
       return null;
     }
+  }
+
+  public int getSize() {
+    return Streetlight.SIZE;
   }
 }

@@ -12,7 +12,9 @@ import java.util.List;
 
 public class FireHydrant extends AGeoObject {
 
-  public static Color c = Color.red;
+  public static Color COLOR = Color.red;
+  public static int SIZE = 2;
+
   private final int objectID;
   private int ObjectID;
   private String placementDT;
@@ -60,6 +62,10 @@ public class FireHydrant extends AGeoObject {
 
   @Override
   public Color getColor() {
-    return FireHydrant.c;
+    return FireHydrant.COLOR;
+  }
+
+  public int getSize() {
+    return FireHydrant.SIZE;
   }
 }

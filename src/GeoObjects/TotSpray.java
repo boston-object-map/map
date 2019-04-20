@@ -12,7 +12,8 @@ import java.util.List;
 
 public class TotSpray extends AGeoObject {
 
-  public static Color c = Color.blue;
+  public static Color COLOR = Color.blue;
+  public static int SIZE = 20;
   private int objectID;
   private String neighborhood;
   private String parkName;
@@ -37,7 +38,7 @@ public class TotSpray extends AGeoObject {
 
   @Override
   public Color getColor() {
-    return TotSpray.c;
+    return TotSpray.COLOR;
   }
 
   @Override
@@ -63,5 +64,9 @@ public class TotSpray extends AGeoObject {
       e.printStackTrace();
       return null;
     }
+  }
+
+  public int getSize() {
+    return TotSpray.SIZE;
   }
 }

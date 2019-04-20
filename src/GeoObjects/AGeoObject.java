@@ -1,5 +1,7 @@
 package GeoObjects;
 
+import java.awt.*;
+
 /**
  * Abstract class for objects
  */
@@ -35,4 +37,6 @@ public abstract class AGeoObject implements IGeoObject {
     return "future feature";
   }
 
+  public abstract Color getColor();
+  public abstract int getSize();
 }
