@@ -30,6 +30,9 @@ public abstract class AGeoObject implements IGeoObject {
     return Y;
   }
 
+  /**
+   * Returns a string describing object type, such as "college", "chargingstation"
+   */
   abstract public String getObjectType();
 
   @Override
@@ -37,6 +40,13 @@ public abstract class AGeoObject implements IGeoObject {
     return "future feature";
   }
 
+  /**
+   * Returns the color associated with instances of this class.
+   */
   public abstract Color getColor();
+
+  /**
+   * Returns the size associated with instances of this class.
+   */
   public abstract int getSize();
 }
