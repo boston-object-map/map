@@ -152,11 +152,15 @@ public class MapView extends JFrame implements ItemListener, ActionListener {
     if (e.getSource() instanceof JButton) {
       switch (e.getActionCommand()) {
         case ("+"):
-          this.animationPanel.scaleFactor *= 1.5;
-          this.animationPanel.scaleDimensions();
+          if(this.animationPanel.scaleFactor < 26) {
+            this.animationPanel.scaleFactor *= 1.5;
+            this.animationPanel.scaleDimensions();
+          }
           break;
         case ("-"):
-          this.animationPanel.scaleFactor /= 1.5;
+          if(animationPanel.scaleFactor > 0.5) {
+            this.animationPanel.scaleFactor /= 1.5;
+          }
           break;
       }
       this.animationPanel.scaleDimensions();
