@@ -1,6 +1,5 @@
 package Model;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,7 +67,6 @@ public class DataTranslator implements IDataTranslator {
             throw new IllegalArgumentException("No GeoObjects of type " + i);
         }
       } catch (java.sql.SQLException j) {
-        //TODO
         j.printStackTrace();
         throw new IllegalArgumentException("SQL error");
       }
@@ -103,7 +101,6 @@ public class DataTranslator implements IDataTranslator {
       }
     }
     catch (java.sql.SQLException j) {
-      //TODO
       j.printStackTrace();
       throw new IllegalArgumentException("SQL error");
     }

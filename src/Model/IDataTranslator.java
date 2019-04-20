@@ -11,15 +11,12 @@ public interface IDataTranslator {
 
   /**
    * Returns all GeoObjects in a rectangular View.
-   * @param upperX
-   * @param upperX
-   * @param lowerX
-   * @param lowerX
-   * @return
    */
   public List<IGeoObject> getObjectsInView(double lowerX, double upperX, double lowerY, double upperY);
 
-
+  /**
+   * Returns all objects of a given type, such as "firehydrant" or "tree".
+   */
   public List<IGeoObject> getObjectsOfType(String type);
 }
 
