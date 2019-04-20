@@ -14,6 +14,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * The user interface for our map.
+ */
 public class MapView extends JFrame implements ItemListener, ActionListener {
 
   private List<IGeoObject> objects = new ArrayList<>();
@@ -22,7 +25,7 @@ public class MapView extends JFrame implements ItemListener, ActionListener {
   final Map<String, Class<? extends AGeoObject>> typeMap = new HashMap<>();
 
 
-  //These keep track of what objects we are rendering. Direct mutation from
+  //These keep track of what objects we are rendering.
   private boolean college = true,
           chargingStation = true,
           fireHydrant = true,
@@ -50,6 +53,9 @@ public class MapView extends JFrame implements ItemListener, ActionListener {
     this.typeMap.put("Trees", Tree.class);
   }
 
+  /**
+   * Gathers data from DB dependent upon what needs to be rendered.
+   */
   public void refresh() {
     this.objects.clear();
     if (college) {
@@ -82,6 +88,9 @@ public class MapView extends JFrame implements ItemListener, ActionListener {
     this.repaint();
   }
 
+  /**
+   * Draws the objects on the map.
+   */
   public void render() {
     this.setLayout(new BorderLayout());
 
@@ -164,7 +173,6 @@ public class MapView extends JFrame implements ItemListener, ActionListener {
           break;
       }
       this.animationPanel.scaleDimensions();
-//      this.repaint();
     } else {
       JTextField field = (JTextField) e.getSource();
       try {

@@ -1,7 +1,6 @@
 package View;
 
 import GeoObjects.IGeoObject;
-import javafx.animation.Animation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +22,18 @@ public class AnimationPanel extends JPanel {
     this.setBackground(Color.lightGray);
   }
 
+  /**
+   * Allows transformation between geo coordinates and pixels.
+   * @param xInTL
+   * @param yInTL
+   * @param xInBR
+   * @param yInBR
+   * @param xOutTL
+   * @param yOutTL
+   * @param xOutBR
+   * @param yOutBR
+   * @return
+   */
   private static AffineTransform setTransform(
           double xInTL, double yInTL,
           double xInBR, double yInBR,
@@ -43,14 +54,25 @@ public class AnimationPanel extends JPanel {
             this.getWidth(), this.getHeight());
   }
 
+  /**
+   * Toggle black and white mode.
+   * @param BW
+   */
   public void setBW(boolean BW) {
     isBW = BW;
   }
 
+  /**
+   * Update the list of objects this AnimationPanel should draw.
+   * @param list
+   */
   public void setObjects(List<IGeoObject> list) {
     this.Objects = list;
   }
 
+  /**
+   * Resize the window based on current zoom level.
+   */
   public void scaleDimensions() {
     Dimension dim = this.originalDimensions;
     this.setPreferredSize(new Dimension(
@@ -68,7 +90,6 @@ public class AnimationPanel extends JPanel {
     Graphics2D g2d = (Graphics2D) g;
 
     for (IGeoObject i : Objects) {
-
 
       if(this.isBW) {
         g2d.setColor(Color.black);
