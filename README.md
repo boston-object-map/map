@@ -1,2 +1,2 @@
 # map
-Mapping Boston using trees, trash cans, fire hydrants, and more.
+Mapping Boston using public data on trees, trash cans, fire hydrants, and more.
